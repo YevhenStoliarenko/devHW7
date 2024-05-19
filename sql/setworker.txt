@@ -1,0 +1,10 @@
+Alex,1990-10-01,Trainee,900;
+Michael,1980-09-01,Middle,2000;
+Nic,1982-05-05,Trainee, 800;
+Eugen,1989-12-17,Senior, 5500;
+Olga,1991-01-01,Junior,1000;
+Sofia,1998-06-24,Middle,2500;
+Eva,1999-11-12,Junior,1500;
+Rita,2000-08-19,Trainee,700;
+Braian,1978-03-06,Senior,6000;
+Jens,2005-9-28,Junior,1600
