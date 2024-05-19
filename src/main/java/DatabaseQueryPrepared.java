@@ -2,9 +2,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Arrays;
 
-public class Test {
+public class DatabaseQueryPrepared {
 
     private static final String SET_CLIENT = """
             INSERT INTO mega.client(NAME)
@@ -27,7 +26,7 @@ public class Test {
             """;
 
 
-    public static void innitDb() throws IOException, SQLException, MyExeption {
+    public static void innitDb() throws IOException, SQLException, ConnectionExeption {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("sql/init_db.sql"));) {
             StringBuilder stringBuilder = new StringBuilder();
             String line;
@@ -40,7 +39,7 @@ public class Test {
                 try (Statement statement = connection.createStatement();){
                     statement.execute(sqlQuery);
                 }catch (SQLException ex) {
-                    throw new MyExeption("Error with init");
+                    throw new ConnectionExeption("Error with init");
                 }
 
             }
@@ -49,7 +48,7 @@ public class Test {
 
     }
 
-    public static void setClient(String fileName) throws IOException, MyExeption {
+    public static void setClient(String fileName) throws IOException, ConnectionExeption {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));) {
             StringBuilder stringBuilder = new StringBuilder();
             String lines = bufferedReader.readLine();
@@ -66,13 +65,13 @@ public class Test {
                     preparedStatement.setString(1, name);
                     preparedStatement.executeUpdate();
                 } catch (SQLException ex) {
-                    throw new MyExeption("Error with client");                }
+                    throw new ConnectionExeption("Error with client");                }
             }
         }
 
     }
 
-    public static void setWorker(String workerName) throws IOException, MyExeption {
+    public static void setWorker(String workerName) throws IOException, ConnectionExeption {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(workerName));) {
             StringBuilder stringBuilder = new StringBuilder();
             String lines = bufferedReader.readLine();
@@ -94,7 +93,7 @@ public class Test {
                     preparedStatement.setString(4, clientsDate[3]);
                     preparedStatement.executeUpdate();
                 } catch (SQLException ex) {
-                    throw new MyExeption("Error with worker");
+                    throw new ConnectionExeption("Error with worker");
                 }
 
             }
@@ -103,7 +102,7 @@ public class Test {
 
     }
 
-    public static void setProjekt(String projektName) throws IOException, MyExeption {
+    public static void setProjekt(String projektName) throws IOException, ConnectionExeption {
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(projektName));) {
             StringBuilder stringBuilder = new StringBuilder();
             String lines = bufferedReader.readLine();
@@ -123,7 +122,7 @@ public class Test {
                     preparedStatement.setString(3, clientsDate[2]);
                     preparedStatement.executeUpdate();
                 } catch (SQLException ex) {
-                    throw new MyExeption("Error with project");
+                    throw new ConnectionExeption("Error with project");
                 }
 
             }
@@ -133,7 +132,7 @@ public class Test {
 
 
 
-    public static void setProjektWorker(String projektWorker) throws IOException, MyExeption {
+    public static void setProjektWorker(String projektWorker) throws IOException, ConnectionExeption {
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(projektWorker));) {
             StringBuilder stringBuilder = new StringBuilder();
             String lines = bufferedReader.readLine();
@@ -152,7 +151,7 @@ public class Test {
                     preparedStatement.setString(2, clientsDate[1]);
                     preparedStatement.executeUpdate();
                 } catch (SQLException ex) {
-                    throw new MyExeption("Error");
+                    throw new ConnectionExeption("Error");
                 }
 
             }
